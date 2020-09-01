@@ -1,1 +1,20 @@
 version: '3'
+
+volumes: 
+    dados:
+services:
+    app:
+        build: ./App
+        command: python app.py
+        volumes: 
+            - ./App:/usr/src/app
+        ports:
+            - 5000:5000
+    db:
+        image: postgres:9.6
+        environment: 
+            POSTGRES_USER: 'evolux'
+            POSTGRES_PASSWORD: 'evolux'
+            POSTGRES_DB: 'evolux'
+        volumes: 
+            - dados:/var/lib/postgresql/data

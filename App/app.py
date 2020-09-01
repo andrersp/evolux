@@ -3,6 +3,7 @@
 from flask import Flask, jsonify
 from view.tables import get_tables, save_table, get_table, delete_table
 from view.numbers import get_numbers, save_number, get_number, delete_number
+from view.user import get_users, get_user, save_user
 
 from db import db
 
@@ -60,6 +61,21 @@ def route_get_number(number_id):
 @app.route("/number/<int:number_id>", methods=["DELETE"])
 def route_delete_number(number_id):
     return delete_number(number_id)
+
+
+@app.route("/users", methods=["GET"])
+def route_get_users():
+    return get_users()
+
+
+@app.route("/user/<int:id_user>", methods=["GET"])
+def route_get_user(id_user):
+    return get_user(id_user)
+
+
+@app.route("/user", methods=["POST"])
+def route_save_user():
+    return save_user()
 
 
 if __name__ == "__main__":

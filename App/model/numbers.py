@@ -28,9 +28,9 @@ class ModelNumber(db.Model):
     def list_json(self):
         return {
             "id": self.number_id,
-            "value": self.value,
-            "monthyPrice": self.monthy_price,
-            "setupPrice": self.setup_price,
+            "value": "+{} {} {}-{}".format(self.value[:2], self.value[2:4], self.value[4:9], self.value[9:]),
+            "monthyPrice": "{:.2f}".format(self.monthy_price),
+            "setupPrice": "{:.2f}".format(self.setup_price),
             "currency": self.currency,
             "available": self.available,
 
@@ -39,9 +39,9 @@ class ModelNumber(db.Model):
     def number_json(self):
         return {
             "id": self.number_id,
-            "value": self.value,
-            "monthyPrice": self.monthy_price,
-            "setupPrice": self.setup_price,
+            "value": "+{} {} {}-{}".format(self.value[:2], self.value[2:4], self.value[4:9], self.value[9:]),
+            "monthyPrice": "{:.2f}".format(self.monthy_price),
+            "setupPrice": "{:.2f}".format(self.setup_price),
             "currency": self.currency,
             "available": self.available,
             "table_id": self.table_id if self.table_id else "",

@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
 from flask import jsonify, make_response, request
+from flask_jwt_extended import create_access_token, jwt_required
+
 
 from model.users import ModelUser
 
@@ -14,6 +16,7 @@ schema = {
 }
 
 
+@jwt_required
 def get_users():
 
     data = [user.user_json() for user in ModelUser.query.all()]
@@ -21,6 +24,7 @@ def get_users():
     return make_response(jsonify({"data": data}), 200)
 
 
+@jwt_required
 def get_user(id_user):
 
     user = ModelUser.find_user(id_user)
@@ -31,6 +35,7 @@ def get_user(id_user):
     return make_response(jsonify({"message": "User Found", "data": user.user_json()}), 200)
 
 
+@jwt_required
 @required_params(schema)
 def save_user():
     data = request.json
@@ -59,6 +64,7 @@ def save_user():
             jsonify({"message": "Internal error", "data": "{}"}), 500)
 
 
+@jwt_required
 @required_params(schema)
 def update_user():
     data = request.json
@@ -82,3 +88,37 @@ def update_user():
         return make_response(jsonify({"message": "User Updated", "data": user.user_json()}), 200)
     except:
         return make_response(jsonify({"message": "Internal Error", "data": {}}), 500)
+
+
+schema = {
+    "username": {"type": "string", "required": True},
+    "password": {"type": "string", "required": True}
+}
+
+
+@required_params(schema)
+def user_login():
+
+    dados = request.json
+
+    user = ModelUser.find_username(dados.get("username"))
+
+    if not user:
+        return make_response(jsonify(
+            {"message": "Username not found.",
+             "data": {}}), 400)
+
+    if not user.check_password(dados.get("password")):
+        return make_response(jsonify(
+            {"message": "Password does not match.",
+             "data": {}}), 400)
+    if not user.active:
+        return make_response(jsonify(
+            {"message": "User is disabled.",
+             "data": {}}), 400)
+
+    token = create_access_token(identity=user.id_user)
+
+    return make_response(jsonify({"message": "Login Success", "data": {
+        "token": token
+    }}), 200)

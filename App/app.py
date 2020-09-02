@@ -1,21 +1,37 @@
 # -*- coding: utf-8 -*-
 
 from flask import Flask, jsonify
+from flask_jwt_extended import JWTManager
+from flask_bcrypt import Bcrypt
+
 from view.tables import get_tables, save_table, get_table, delete_table
 from view.numbers import get_numbers, save_number, get_number, delete_number
-from view.user import get_users, get_user, save_user
+from view.user import get_users, get_user, save_user, user_login
 
 from db import db
+from start_data import create_user, create_tables_data, create_number_data
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://evolux:evolux@db/evolux"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+app.config["JWT_SECRET_KEY"] = 'evoluxjob'
 db.init_app(app)
+bcript = Bcrypt(app)
+jwt = JWTManager(app)
+
+
+# 404 Error
+@app.errorhandler(404)
+def page_not_found(e):
+    return jsonify({"message": "URL not Found"}), 404
 
 
 @app.before_first_request
 def create_tables():
     db.create_all()
+    create_user()
+    create_tables_data()
+    create_number_data()
 
 
 @app.route("/", methods=["GET"])
@@ -76,6 +92,11 @@ def route_get_user(id_user):
 @app.route("/user", methods=["POST"])
 def route_save_user():
     return save_user()
+
+
+@app.route("/login", methods=["POST"])
+def route_login():
+    return user_login()
 
 
 if __name__ == "__main__":

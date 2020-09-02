@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from flask import jsonify, make_response, request
+from flask_jwt_extended import jwt_required
 from wraps import required_params
 
 from model.tables import ModelTable
@@ -13,14 +14,37 @@ schema = {
 }
 
 
+@jwt_required
 def get_tables():
 
-    data = [table.list_json() for table in ModelTable.query.all()]
+    page = int(request.args.get("page", 1))
+    limit = int(request.args.get("limit", 20))
 
-    respose = make_response(jsonify({"data": data}), 200)
+    query = ModelTable.query.paginate(page, limit, error_out=False)
+
+    data = [table.list_json() for table in query.items]
+    previus = "" if not query.has_prev else "{}?page={}&limit={}".format(
+        request.base_url, query.prev_num, limit)
+
+    if query.page > query.pages:
+        return make_response(jsonify({"message": "Page out range", "previus": "{}?page={}&limit={}".format(
+            request.base_url, query.pages, limit)}), 404)
+
+    next = "" if not query.has_next else "{}?page={}&limit={}".format(
+        request.base_url, query.next_num, limit)
+
+    respose = make_response(jsonify({
+        "data": data,
+        "page": "{} of {}".format(query.page, query.pages),
+        "items": "{} of {}".format(query.per_page, query.total),
+        "previous": previus,
+        "next": next
+    }
+    ), 200)
     return respose
 
 
+@jwt_required
 @required_params(schema)
 def save_table():
 
@@ -41,6 +65,7 @@ def save_table():
         return make_response(jsonify({"message": "Internal Error", "data": table.list_json()}), 500)
 
 
+@jwt_required
 @required_params(schema)
 def update_table():
     data = request.json
@@ -55,6 +80,7 @@ def update_table():
         return make_response(jsonify({"message": "Internal Error", "data": {}}), 500)
 
 
+@jwt_required
 def get_table(table_id):
 
     table = ModelTable.find_table(table_id)
@@ -62,9 +88,10 @@ def get_table(table_id):
     if not table:
         return make_response(jsonify({"message": "Table not found", "data": {}}), 404)
 
-    return make_response(jsonify({"message": "Table found", "data": table.list_json()}), 200)
+    return make_response(jsonify({"message": "Table found", "data": table.table_json()}), 200)
 
 
+@jwt_required
 def delete_table(table_id):
 
     table = ModelTable.find_table(table_id)

@@ -25,7 +25,17 @@ class ModelTable(db.Model):
             "table_id": self.id,
             "name": self.name,
             "max_line": self.max_line,
-            "free_lines": len([free.list_json() for free in self.free_lines if free.available])
+            "free_lines": len([free.list_json() for free in self.free_lines if free.available]),
+
+        }
+
+    def table_json(self):
+        return {
+            "table_id": self.id,
+            "name": self.name,
+            "max_line": self.max_line,
+            "free_lines": len([free.list_json() for free in self.free_lines if free.available]),
+            "lines": [free.list_json() for free in self.free_lines]
         }
 
     def save_table(self):

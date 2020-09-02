@@ -50,13 +50,13 @@ def create_tables_data():
 def create_number_data():
 
     condition = [True, False]
-
+    x = 1
     for _ in range(10):
 
         for i in range(50):
             values = ''.join(choice(string.digits) for i in range(11))
             data = {
-                "id": i+1,
+                "id": x,
                 "value": "55{}".format(values),
                 "monthy_price": round(uniform(0.1, 0.99), 2),
                 "setup_price": round(uniform(3.01, 9.99), 2),
@@ -70,3 +70,5 @@ def create_number_data():
             if not line:
                 line = ModelNumber(**data)
                 line.save_number()
+
+            x += 1

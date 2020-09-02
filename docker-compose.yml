@@ -1,5 +1,8 @@
 version: '3'
 
+networks: 
+    net:
+    database:
 volumes: 
     dados:
 services:
@@ -11,14 +14,28 @@ services:
             POSTGRES_DB: 'evolux'
         volumes: 
             - dados:/var/lib/postgresql/data
+        networks: 
+            - database
     app:
         build: ./App
-        command: python app.py
+        command: gunicorn --bind 0.0.0.0:5000 app:app
         volumes: 
             - ./App:/usr/src/app
-        ports:
-            - 5000:5000
+        expose:  
+            - 5000
+        networks:
+            - net
+            - database
         
         depends_on: 
             - db
+    web:
+        build: ./web
+        ports: 
+            - 80:80
+        depends_on: 
+            - app
+        networks: 
+            - net
+
     

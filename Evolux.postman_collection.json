@@ -1,0 +1,405 @@
+{
+	"info": {
+		"_postman_id": "908ec8f8-90a6-4e39-b659-6ed707d5c3f3",
+		"name": "Evolux",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Get All Users",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1OTkwMTQ3NjYsIm5iZiI6MTU5OTAxNDc2NiwianRpIjoiNzAwYmQ0NDEtYTFjYS00NzIwLTgzNWYtNDhiNzdhYTlhZjJmIiwiZXhwIjoxNTk5MDE1NjY2LCJpZGVudGl0eSI6MSwiZnJlc2giOmZhbHNlLCJ0eXBlIjoiYWNjZXNzIn0.VrjgSqAqZfmIANOUzLkeBQMGafXu2rQHhCvqWJhhUwE",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}:{{port}}/users",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get one user",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1OTkwMTQ3NjYsIm5iZiI6MTU5OTAxNDc2NiwianRpIjoiNzAwYmQ0NDEtYTFjYS00NzIwLTgzNWYtNDhiNzdhYTlhZjJmIiwiZXhwIjoxNTk5MDE1NjY2LCJpZGVudGl0eSI6MSwiZnJlc2giOmZhbHNlLCJ0eXBlIjoiYWNjZXNzIn0.VrjgSqAqZfmIANOUzLkeBQMGafXu2rQHhCvqWJhhUwE"
+							}
+						],
+						"url": {
+							"raw": "{{host}}:{{port}}/user/1",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"user",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"admin\",\n    \"password\": \"admin\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}:{{port}}/login",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Save / Update User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1OTkwMTQ3NjYsIm5iZiI6MTU5OTAxNDc2NiwianRpIjoiNzAwYmQ0NDEtYTFjYS00NzIwLTgzNWYtNDhiNzdhYTlhZjJmIiwiZXhwIjoxNTk5MDE1NjY2LCJpZGVudGl0eSI6MSwiZnJlc2giOmZhbHNlLCJ0eXBlIjoiYWNjZXNzIn0.VrjgSqAqZfmIANOUzLkeBQMGafXu2rQHhCvqWJhhUwE",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": \"2\",\n\t\"username\": \"andre\",\n\t\"password\": \"andre\",\n\t\"active\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}:{{port}}/user",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Numbers",
+			"item": [
+				{
+					"name": "Get All Numbers",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1OTkwMTQ3NjYsIm5iZiI6MTU5OTAxNDc2NiwianRpIjoiNzAwYmQ0NDEtYTFjYS00NzIwLTgzNWYtNDhiNzdhYTlhZjJmIiwiZXhwIjoxNTk5MDE1NjY2LCJpZGVudGl0eSI6MSwiZnJlc2giOmZhbHNlLCJ0eXBlIjoiYWNjZXNzIn0.VrjgSqAqZfmIANOUzLkeBQMGafXu2rQHhCvqWJhhUwE",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}:{{port}}/numbers?page=2&limit=50",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"numbers"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "2"
+								},
+								{
+									"key": "limit",
+									"value": "50"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get one number",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1OTkwMTQ3NjYsIm5iZiI6MTU5OTAxNDc2NiwianRpIjoiNzAwYmQ0NDEtYTFjYS00NzIwLTgzNWYtNDhiNzdhYTlhZjJmIiwiZXhwIjoxNTk5MDE1NjY2LCJpZGVudGl0eSI6MSwiZnJlc2giOmZhbHNlLCJ0eXBlIjoiYWNjZXNzIn0.VrjgSqAqZfmIANOUzLkeBQMGafXu2rQHhCvqWJhhUwE",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}:{{port}}/number/1",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"number",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete number",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1OTkwMTQ3NjYsIm5iZiI6MTU5OTAxNDc2NiwianRpIjoiNzAwYmQ0NDEtYTFjYS00NzIwLTgzNWYtNDhiNzdhYTlhZjJmIiwiZXhwIjoxNTk5MDE1NjY2LCJpZGVudGl0eSI6MSwiZnJlc2giOmZhbHNlLCJ0eXBlIjoiYWNjZXNzIn0.VrjgSqAqZfmIANOUzLkeBQMGafXu2rQHhCvqWJhhUwE"
+							}
+						],
+						"url": {
+							"raw": "{{host}}:{{port}}/number/1",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"number",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Save / Update Number",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1OTkwMTQ3NjYsIm5iZiI6MTU5OTAxNDc2NiwianRpIjoiNzAwYmQ0NDEtYTFjYS00NzIwLTgzNWYtNDhiNzdhYTlhZjJmIiwiZXhwIjoxNTk5MDE1NjY2LCJpZGVudGl0eSI6MSwiZnJlc2giOmZhbHNlLCJ0eXBlIjoiYWNjZXNzIn0.VrjgSqAqZfmIANOUzLkeBQMGafXu2rQHhCvqWJhhUwE"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": \"8\",\n\t\"value\" : \"+ 55 29 51694-0957\",\n\t\"monthy_price\": 10,\n\t\"setup_price\": 10.25,\n\t\"available\": true,\n\t\"currency\": \"US\",\n\t\"table_id\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}:{{port}}/number",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"number"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Tables",
+			"item": [
+				{
+					"name": "Get All Tables",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1OTkwMTQ3NjYsIm5iZiI6MTU5OTAxNDc2NiwianRpIjoiNzAwYmQ0NDEtYTFjYS00NzIwLTgzNWYtNDhiNzdhYTlhZjJmIiwiZXhwIjoxNTk5MDE1NjY2LCJpZGVudGl0eSI6MSwiZnJlc2giOmZhbHNlLCJ0eXBlIjoiYWNjZXNzIn0.VrjgSqAqZfmIANOUzLkeBQMGafXu2rQHhCvqWJhhUwE"
+							}
+						],
+						"url": {
+							"raw": "{{host}}:{{port}}/tables?page=2&limit=20",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"tables"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "2"
+								},
+								{
+									"key": "limit",
+									"value": "20"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get One Table",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1OTkwMTQ3NjYsIm5iZiI6MTU5OTAxNDc2NiwianRpIjoiNzAwYmQ0NDEtYTFjYS00NzIwLTgzNWYtNDhiNzdhYTlhZjJmIiwiZXhwIjoxNTk5MDE1NjY2LCJpZGVudGl0eSI6MSwiZnJlc2giOmZhbHNlLCJ0eXBlIjoiYWNjZXNzIn0.VrjgSqAqZfmIANOUzLkeBQMGafXu2rQHhCvqWJhhUwE"
+							}
+						],
+						"url": {
+							"raw": "{{host}}:{{port}}/table/1",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"table",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Table",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1OTkwMTU2ODQsIm5iZiI6MTU5OTAxNTY4NCwianRpIjoiNjg5YjcxOTktMTg3MS00Y2E2LWI3NDEtOWEzMDM2NGE4ZjAxIiwiZXhwIjoxNTk5MDE2NTg0LCJpZGVudGl0eSI6MSwiZnJlc2giOmZhbHNlLCJ0eXBlIjoiYWNjZXNzIn0.9d105a3dRSTwblVSWfgi98BQDM-R_fgSdoazV2uvUvo"
+							}
+						],
+						"url": {
+							"raw": "{{host}}:{{port}}/table/41",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"table",
+								"41"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Save / Update Table",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1OTkwMTQ3NjYsIm5iZiI6MTU5OTAxNDc2NiwianRpIjoiNzAwYmQ0NDEtYTFjYS00NzIwLTgzNWYtNDhiNzdhYTlhZjJmIiwiZXhwIjoxNTk5MDE1NjY2LCJpZGVudGl0eSI6MSwiZnJlc2giOmZhbHNlLCJ0eXBlIjoiYWNjZXNzIn0.VrjgSqAqZfmIANOUzLkeBQMGafXu2rQHhCvqWJhhUwE"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"table_id\": \"\",\n\t\"name\": \"Nova Update 2\",\n\t\"max_line\": 10\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}:{{port}}/table",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"table"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "67ef0639-6cc3-4d5e-a7e0-0e0362f12256",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "515f86c2-e7f2-49ca-b837-253079b953ba",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "6015a24d-1300-40d8-bec9-87f52a5a5cfb",
+			"key": "host",
+			"value": "http://127.0.0.1"
+		},
+		{
+			"id": "6ce92bf9-7254-41b3-897e-cdf063a3fe3e",
+			"key": "port",
+			"value": "5000"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
